@@ -1,4 +1,4 @@
-import program, { action } from 'commander';
+import program from 'commander';
 import chalk from 'chalk';
 import { VERSION } from './utils/constants';
 import apply from './index';
@@ -12,7 +12,7 @@ const actionMap = {
   config: {
     alias: 'cfg',
     description: 'config .olisrc',
-    usafes: [
+    usages: [
       'oli config set <k> <v>',
       'oli config get <k>',
       'oli config remove <k>',
@@ -56,12 +56,11 @@ function textGreen(text) {
   return chalk.green(text);
 }
 
-program.usages('<command> [options]');
-
+program.usage('<command> [options]');
 // oli -h
 program.on('-h', help);
 program.on('--help', help);
-program.version(VERSION, '-v--version').parse(process.argv);
+program.version(VERSION, '-V --version').parse(process.argv);
 
 // 只输入oli 没输入参数
 if (!process.argv.slice(2).length) {

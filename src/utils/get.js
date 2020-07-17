@@ -1,8 +1,8 @@
 import downloadGit from 'download-git-repo';
-import { getAll } from './rc';
+import { get } from './rc';
 
 const dowloadLocal = async (templateName, projectName) => {
-  const config = await getAll();
+  const config = await get();
   const api = `${config.registry}/${templateName}`;
 
   return new Promise((resolve, reject) => {
