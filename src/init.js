@@ -5,7 +5,14 @@ import chalk from 'chalk';
 import symbol from 'log-symbols';
 import { downloadLocal } from './utils/get';
 
-export const init = async (templateNmae, projectName) => {
+export const init = async (projectName) => {
+  if (!projectName) {
+    console.log(
+      chalk.redBright.bold('need project name: oli init projectname')
+    );
+    return;
+  }
+
   if (!fs.existsSync(projectName)) {
     //命令行交互
     inquirer
@@ -21,10 +28,10 @@ export const init = async (templateNmae, projectName) => {
       ])
       .then(async (answer) => {
         //下载模板 选择模板
-        //通过配置文件，获取模板信息
+        console.log(answer);
         let loading = ora('downloading template ...');
         loading.start();
-        downloadLocal(templateName, projectName).then(
+        downloadLocal(projectName).then(
           () => {
             loading.succeed();
             const fileName = `${projectName}/package.json`;

@@ -1,12 +1,10 @@
 import downloadGit from 'download-git-repo';
-import { get } from './rc';
 
-const dowloadLocal = async (templateName, projectName) => {
-  const config = await get();
-  const api = `${config.registry}/${templateName}`;
-
+export const downloadLocal = async (projectName) => {
+  const api = 'oliver34Team/oliver-cli-template';
   return new Promise((resolve, reject) => {
     downloadGit(api, projectName, (err) => {
+      console.log(api);
       if (err) {
         reject(err);
       }
@@ -14,5 +12,3 @@ const dowloadLocal = async (templateName, projectName) => {
     });
   });
 };
-
-export default dowloadLocal;
